@@ -150,6 +150,8 @@ def get_session_stats():
 
 
 @app.get("/api/readings/recent", response_model=List[ProcessedReading])
+from utils import to_berlin
+
 def get_recent_readings(limit: int = 50, db: Session = Depends(get_db)):
     """
     Get recent sensor readings.
@@ -162,7 +164,7 @@ def get_recent_readings(limit: int = 50, db: Session = Depends(get_db)):
     return [
         ProcessedReading(
             id=r.id,
-            timestamp=r.timestamp,
+            timestamp=to_berlin(r.timestamp),
             pir=r.pir,
             delta_mag=r.delta_mag,
             delta_mag_smoothed=r.delta_mag_smoothed,
@@ -192,7 +194,7 @@ def get_timeline_data(
     
     return [
         TimelineDataPoint(
-            timestamp=r.timestamp,
+            timestamp=to_berlin(r.timestamp),
             activity_state=ActivityState(r.activity_state),
             delta_mag=r.delta_mag,
             inactive_seconds=r.inactive_seconds
@@ -216,7 +218,7 @@ def get_alert_events(
     return [
         {
             "id": a.id,
-            "timestamp": a.timestamp,
+            "timestamp": to_berlin(a.timestamp),
             "duration_seconds": a.duration_seconds
         }
         for a in alerts
