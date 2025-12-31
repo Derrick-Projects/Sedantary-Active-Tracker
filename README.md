@@ -72,8 +72,4 @@ py -m http.server 3000
 - All times are shown in Berlin timezone.
 - Alerts are triggered after 20 seconds of inactivity (for testing).
 
-## License
-MIT License
 
-## Contact
-For questions or contributions, please open an issue or contact the maintainer.
