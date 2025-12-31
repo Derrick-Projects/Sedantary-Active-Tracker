@@ -1,0 +1,20 @@
+# Sedentary Activity Tracker - Backend Dependencies
+
+# Web framework
+fastapi>=0.115.0
+uvicorn>=0.32.0
+
+# Serial communication
+pyserial>=3.5
+
+# Database
+sqlalchemy>=2.0.36
+
+# Data processing
+pydantic>=2.10.0
+
+# CORS support
+python-multipart>=0.0.9
+
+# Date/time handling
+python-dateutil>=2.9.0

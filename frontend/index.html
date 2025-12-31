@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sedentary Activity Tracker - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏃 Sedentary Activity Tracker</h1>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-dot disconnected"></span>
+                <span id="connectionText">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Top Section: Current Status -->
+        <section class="status-section">
+            <div class="status-card main-status" id="activityStatus">
+                <div class="status-indicator inactive" id="statusIndicator">
+                    <span class="status-icon" id="statusIcon">⏸️</span>
+                </div>
+                <div class="status-info">
+                    <h2 id="activityStateText">Loading...</h2>
+                    <div class="timer" id="inactivityTimer">
+                        <span class="timer-label">Inactive for:</span>
+                        <span class="timer-value" id="timerValue">00:00</span>
+                    </div>
+                    <div class="confidence" id="confidenceDisplay">
+                        Confidence: <span id="confidenceValue">--</span>%
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalReadings">0</div>
+                    <div class="stat-label">Total Readings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="activePercentage">0%</div>
+                    <div class="stat-label">Active Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="longestInactive">0s</div>
+                    <div class="stat-label">Longest Inactive</div>
+                </div>
+                <div class="stat-card alert-card">
+                    <div class="stat-value" id="alertCount">0</div>
+                    <div class="stat-label">Alerts Triggered</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Middle Section: Charts -->
+        <section class="charts-section">
+            <!-- Timeline Activity Graph -->
+            <div class="chart-container">
+                <h3>📊 Activity Timeline</h3>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="legend-color active"></span> Active</span>
+                    <span class="legend-item"><span class="legend-color transition"></span> Transition</span>
+                    <span class="legend-item"><span class="legend-color inactive"></span> Inactive</span>
+                </div>
+                <div id="timelineChart" class="chart"></div>
+            </div>
+
+            <!-- Acceleration Magnitude Graph -->
+            <div class="chart-container">
+                <h3>📈 Acceleration Magnitude (Delta)</h3>
+                <div class="chart-info">
+                    <span>Threshold: <strong>0.5 m/s²</strong></span>
+                </div>
+                <div id="accelChart" class="chart"></div>
+            </div>
+        </section>
+
+        <!-- Bottom Section: Daily Summary & Alerts -->
+        <section class="bottom-section">
+            <!-- Daily Summary -->
+            <div class="chart-container half-width">
+                <h3>📅 Session Summary</h3>
+                <div id="summaryChart" class="chart"></div>
+            </div>
+
+            <!-- Alert History -->
+            <div class="alert-history half-width">
+                <h3>🔔 Recent Alerts</h3>
+                <div class="alert-list" id="alertList">
+                    <p class="no-alerts">No alerts yet</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Sedentary Activity Tracker | Real-time monitoring powered by MPU6050 & PIR Sensors</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
